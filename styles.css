@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+.parallax {
+    background-image: url('background.jpg'); /* Add your background image here */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.about {
+    background-color: #fff;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.content {
+    max-width: 800px;
+    margin: auto;
+}
+
+h1, h2 {
+    font-size: 2em;
+}
+
+p {
+    font-size: 1.2em;
+}
+
