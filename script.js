@@ -2,6 +2,7 @@
 //service worker registration========================//
 if (navigator.serviceWorker){
     navigator.serviceWorker.register("./serviceWorker.js").then((res)=>console.log("Success"));
+    const permission = Notification.requestPermission().then((res)=>console.log("Hiii",res));
 }
 
 
