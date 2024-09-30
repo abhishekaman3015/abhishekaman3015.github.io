@@ -1,9 +1,28 @@
 
 //service worker registration========================//
-if (navigator.serviceWorker){
-    navigator.serviceWorker.register("./serviceWorker.js").then((res)=>console.log("Success"));
-    const permission = Notification.requestPermission().then((res)=>console.log("Hiii",res));
-}
+// console.log("hi from script")
+// if (navigator.serviceWorker){
+//     navigator.serviceWorker.register("./serviceWorker.js").then((res)=>console.log("Success"));
+//     const permission = Notification.requestPermission().then((res)=>console.log("Hiii",res));
+// }
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/serviceWorker.js').then(function(reg) {
+      console.log('Service Worker Registered!', reg);
+  
+      // Request notification permission
+      Notification.requestPermission().then(function(permission) {
+        if (permission === 'granted') {
+          console.log('Notification permission granted.');
+        } else {
+          console.log('Notification permission denied.');
+        }
+      });
+    }).catch(function(err) {
+      console.error('Service Worker registration failed:', err);
+    });
+  }
+  
 
 
 /*===== MENU SHOW =====*/ 
