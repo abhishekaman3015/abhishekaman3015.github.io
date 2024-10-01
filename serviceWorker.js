@@ -109,16 +109,16 @@ self.addEventListener('install', function(event) {
     console.log('Service Worker Activated');
   });
   
-  self.addEventListener('message', function(event) {
-    if (event.data && event.data.action === 'showNotification') {
-      sendNotification();
-    }
-  });
+//   self.addEventListener('message', function(event) {
+//     if (event.data && event.data.action === 'showNotification') {
+//       sendNotification();
+//     }
+//   });
   
-  function sendNotification() {
-    self.registration.showNotification('Push Notification', {
-      body: 'This is a 10-second interval notification!',
-      icon: '/favicon.ico', // Replace with your own icon if needed
-    });
-  }
+//   function sendNotification() {
+//     self.registration.showNotification('Push Notification', {
+//       body: 'This is a 10-second interval notification!',
+//       icon: '/favicon.ico', // Replace with your own icon if needed
+//     });
+//   }
   
