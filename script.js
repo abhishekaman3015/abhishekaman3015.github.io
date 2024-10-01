@@ -6,6 +6,23 @@
 //     const permission = Notification.requestPermission().then((res)=>console.log("Hiii",res));
 // }
 
+// if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker.register('/serviceWorker.js').then(function(reg) {
+//       console.log('Service Worker Registered!', reg);
+  
+//       // Request notification permission
+//       Notification.requestPermission().then(function(permission) {
+//         if (permission === 'granted') {
+//           console.log('Notification permission granted.');
+//         } else {
+//           console.log('Notification permission denied.');
+//         }
+//       });
+//     }).catch(function(err) {
+//       console.error('Service Worker registration failed:', err);
+//     });
+//   }
+
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/serviceWorker.js').then(function(reg) {
       console.log('Service Worker Registered!', reg);
@@ -14,6 +31,11 @@ if ('serviceWorker' in navigator) {
       Notification.requestPermission().then(function(permission) {
         if (permission === 'granted') {
           console.log('Notification permission granted.');
+  
+          // Send a message to the service worker every 10 seconds
+          setInterval(() => {
+            reg.active.postMessage({ action: 'showNotification' });
+          }, 10000);
         } else {
           console.log('Notification permission denied.');
         }
@@ -22,6 +44,7 @@ if ('serviceWorker' in navigator) {
       console.error('Service Worker registration failed:', err);
     });
   }
+  
   
 
 

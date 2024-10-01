@@ -68,34 +68,57 @@
 
 // pushNotify();
 
+// self.addEventListener('install', function(event) {
+//     console.log('Service Worker Installed');
+//     self.skipWaiting(); // Force the waiting service worker to become the active service worker
+//   });
+  
+//   self.addEventListener('activate', function(event) {
+//     console.log('Service Worker Activated');
+//   });
+  
+//   self.addEventListener('push', function(event) {
+//     const title = 'Push Notification';
+//     const options = {
+//       body: 'Here is a push notification sent at an interval of 10 seconds!',
+//       icon: '/favicon.ico', // You can replace it with your own icon
+//     };
+  
+//     event.waitUntil(self.registration.showNotification(title, options));
+//   });
+  
+//   // Function to trigger notifications at intervals
+//   function sendNotification() {
+//     self.registration.showNotification('Push Notification', {
+//       body: 'This is a 10-second interval notification',
+//       icon: '/favicon.ico', // Replace with your custom icon if needed
+//     });
+//   }
+  
+//   // Set an interval for every 10 seconds
+//   setInterval(() => {
+//     sendNotification();
+//   }, 10000);  
+
 self.addEventListener('install', function(event) {
     console.log('Service Worker Installed');
-    self.skipWaiting(); // Force the waiting service worker to become the active service worker
+    self.skipWaiting(); // Activate immediately
   });
   
   self.addEventListener('activate', function(event) {
     console.log('Service Worker Activated');
   });
   
-  self.addEventListener('push', function(event) {
-    const title = 'Push Notification';
-    const options = {
-      body: 'Here is a push notification sent at an interval of 10 seconds!',
-      icon: '/favicon.ico', // You can replace it with your own icon
-    };
-  
-    event.waitUntil(self.registration.showNotification(title, options));
+  self.addEventListener('message', function(event) {
+    if (event.data && event.data.action === 'showNotification') {
+      sendNotification();
+    }
   });
   
-  // Function to trigger notifications at intervals
   function sendNotification() {
     self.registration.showNotification('Push Notification', {
-      body: 'This is a 10-second interval notification',
-      icon: '/favicon.ico', // Replace with your custom icon if needed
+      body: 'This is a 10-second interval notification!',
+      icon: '/favicon.ico', // Replace with your own icon if needed
     });
   }
   
-  // Set an interval for every 10 seconds
-  setInterval(() => {
-    sendNotification();
-  }, 10000);  
